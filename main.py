@@ -11,7 +11,7 @@ from Adafruit_IO import MQTTClient
 
 AIO_FEED_ID = ["benzene", "co2", "filter-manual", "filter-smart", "gas", "moist", "nh3", "nox", "pm2-dot-5", "temp"]
 AIO_USERNAME = "TungVan"
-AIO_KEY = "aio_qIXg17BMn60vIFpBZwQYZMDJkrAO"
+AIO_KEY = "aio_RImb95kq0JZmgCsmRGOAqpTzpjGA"
 
 def connected(client):
     print("Ket noi thanh cong ...")
@@ -129,6 +129,11 @@ data_file = open("data.json", 'w')
 json.dump(my_data, data_file)
 data_file = open("data.json", 'r')
 print("Data initialized")
+
+def on_off():
+    my_data["on-off"] = 1 - my_data["on-off"]
+    my_data["write"] = 1
+
 while True:
 #    time.sleep(10)
 #    my_data["benzene"] = random.randint(1, 100)
