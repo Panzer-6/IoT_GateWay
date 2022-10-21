@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Gateway.iml" filepath="$PROJECT_DIR$/.idea/Gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Practice_IotGateway/.idea/Practice_IotGateway.iml" filepath="$PROJECT_DIR$/../Practice_IotGateway/.idea/Practice_IotGateway.iml" />
     </modules>
   </component>
 </project>
