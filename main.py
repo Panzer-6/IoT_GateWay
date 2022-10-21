@@ -1,3 +1,4 @@
+
 # import random
 import time
 from read_write_serial import*
@@ -39,3 +40,4 @@ while True:
     data_file = open("data.json", "r")
     print("Data extracted")
     time.sleep(10)
+
