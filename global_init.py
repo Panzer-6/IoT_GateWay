@@ -3,10 +3,14 @@ import json
 from Adafruit_IO import MQTTClient
 from microbit_connection import*
 
-AIO_FEED_ID = ["benzene", "co2", "filter-manual", "filter-smart", "gas", "moist", "nh3", "nox", "pm2-dot-5", "temp"]
+AIO_FEED_ID = ["temp", "humid", "pm2-dot-5", "harmful-gas", "mode", "status"]
 AIO_USERNAME = "TungVan"
-AIO_KEY = "aio_qIXg17BMn60vIFpBZwQYZMDJkrAO"
+AIO_KEY = "aio_FdYg97Ja9e5u4g2qhYwrE890HvZo"
 
+# For displaying information on the app
+my_data = {"temp": "0", "humid": "0",
+           "pm2-dot-5": "0", "harmful-gas": "0",
+           "mode": "1", "status": "1", "write": "0"}
 def connected(client):
     print("Connection Success ...")
     for feed in AIO_FEED_ID:
@@ -25,26 +29,19 @@ def message(client, feed_id, payload):
         ser.write((str(payload) + "#").encode())
 
 client = MQTTClient(AIO_USERNAME, AIO_KEY)
-client.on_connect = connected
-client.on_disconnect = disconnected
-client.on_message = message
-client.on_subscribe = subscribe
-client.connect()
-client.loop_background()
-
-my_data = {"benzene": 0,
-            "co2": 0,
-            "filter-manual": 0,
-            "filter-smart": 0,
-            "gas": 0,
-            "humid": 0,
-            "nh3": 0,
-            "nox": 0,
-            "pm2.5": 0,
-            "temp": 0,
-            "on-off": 0,
-            "write": 0}
-data_file = open("data.json", "w")
+data_file = open("data.json", 'w')
 json.dump(my_data, data_file)
-data_file = open("data.json", "r")
-print("Data initialized")
+data_file = open("data.json", 'r')
+
+def system_init():
+    client.on_connect = connected
+    client.on_disconnect = disconnected
+    client.on_message = message
+    client.on_subscribe = subscribe
+    client.connect()
+    client.loop_background()
+    print("Data initialized")
+
+# def on_off():
+#     my_data["status"] = 1 - my_data["status"]
+#     my_data["write"] = 1
