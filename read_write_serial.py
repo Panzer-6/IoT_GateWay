@@ -3,45 +3,29 @@ from global_init import*
 def processData(data):
     data = data.replace("!", "")
     data = data.replace("#", "")
-    splitData = data.split(":")
-    print(splitData)
+    split_data = data.split(":")
+    print(split_data)
     try:
-        if splitData[1] == "BENZENE":
-            client.publish("benzene", splitData[2])
-            my_data["benzene"] = ord(splitData[2]) - 48
-        elif splitData[1] == "CO2":
-            client.publish("co2", splitData[2])
-            my_data["co2"] = ord(splitData[2]) - 48
-        elif splitData[1] == "FILTERMANUAL":
-            client.publish("filter-manual", splitData[2])
-            my_data["filter-manual"] = ord(splitData[2]) - 48
-        elif splitData[1] == "FILTERSMART":
-            client.publish("filter-smart", splitData[2])
-            my_data["filter-smart"] = ord(splitData[2]) - 48
-        elif splitData[1] == "GAS":
-            client.publish("gas", splitData[2])
-            my_data["gas"] = ord(splitData[2]) - 48
-        elif splitData[1] == "HUMID":
-            client.publish("humid", splitData[2])
-            my_data["moist"] = ord(splitData[2]) - 48
-        elif splitData[1] == "NH3":
-            client.publish("nh3", splitData[2])
-            my_data["nh3"] = ord(splitData[2]) - 48
-        elif splitData[1] == "NOX":
-            client.publish("nox", splitData[2])
-            my_data["nox"] = ord(splitData[2]) - 48
-        elif splitData[1] == "PM2DOT5":
-            client.publish("pm2-dot-5", splitData[2])
-            my_data["pm2.5"] = ord(splitData[2]) - 48
-        elif splitData[1] == "TEMP":
-            client.publish("temp", splitData[2])
-            my_data["temp"] = ord(splitData[2]) - 48
+        if split_data[1] == "TEMP":
+            client.publish("temp", split_data[2])
+            my_data["temp"] = split_data[2]
+        elif split_data[1] == "HUMID":
+            client.publish("humid", split_data[2])
+            my_data["humid"] = split_data[2]
+        elif split_data[1] == "PM2.5":
+            client.publish("pm2-dot-5", split_data[2])
+            my_data["pm2-dot-5"] = split_data[2]
+        elif split_data[1] == "GAS":
+            client.publish("harmful_gas", split_data[2])
+            my_data["harmful_gas"] = split_data[2]
+        elif split_data[1] == "STATUS":
+            client.publish("status", split_data[2])
+            my_data["status"] = split_data[2]
+        elif split_data[1] == "MODE":
+            client.publish("mode", split_data[2])
+            my_data["mode"] = split_data[2]
     except:
         pass
-
-def writeSerial(var, value):
-    write_data = "!1:" + var + ":" + str(value) + "#"
-    ser.write(write_data.encode())
 
 mess = ""
 def readSerial():
@@ -57,3 +41,7 @@ def readSerial():
             mess = ""
         else:
             mess = mess[end + 1:]
+
+def writeSerial(var, value):
+    write_data = "!1:" + var + ":" + str(value) + "#"
+    ser.write(write_data.encode())
