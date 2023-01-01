@@ -16,14 +16,14 @@ def processData(data):
             client.publish("pm2-dot-5", split_data[2])
             my_data["pm2-dot-5"] = split_data[2]
         elif split_data[1] == "GAS":
-            client.publish("harmful_gas", split_data[2])
-            my_data["harmful_gas"] = split_data[2]
+            client.publish("harmful-gas", split_data[2])
+            my_data["harmful-gas"] = split_data[2]
         elif split_data[1] == "STATUS":
             client.publish("status", split_data[2])
             my_data["status"] = split_data[2]
-        elif split_data[1] == "MODE":
-            client.publish("mode", split_data[2])
-            my_data["mode"] = split_data[2]
+        elif split_data[1] == "SPEED":
+            client.publish("propeller-speed", split_data[2])
+            my_data["propeller-speed"] = split_data[2]
     except:
         pass
 

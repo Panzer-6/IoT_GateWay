@@ -3,14 +3,14 @@ import json
 from Adafruit_IO import MQTTClient
 from microbit_connection import*
 
-AIO_FEED_ID = ["temp", "humid", "pm2-dot-5", "harmful-gas", "mode", "status"]
+AIO_FEED_ID = ["temp", "humid", "pm2-dot-5", "harmful-gas", "propeller-speed", "status"]
 AIO_USERNAME = "TungVan"
-AIO_KEY = "aio_FdYg97Ja9e5u4g2qhYwrE890HvZo"
+AIO_KEY = "aio_cjbM98lpaFyfD8Pm8T48Qg8bpqSg"
 
 # For displaying information on the app
 my_data = {"temp": "0", "humid": "0",
            "pm2-dot-5": "0", "harmful-gas": "0",
-           "mode": "1", "status": "1", "write": "0"}
+           "propeller_speed": "0", "status": "1", "write": "0"}
 def connected(client):
     print("Connection Success ...")
     for feed in AIO_FEED_ID:
