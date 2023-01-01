@@ -9,7 +9,7 @@ while True:
     # Module1: Receive and Extracting data for displaying on the app
     if isMicrobitConnected:
         print("Receiving data...")
-        time.sleep(10)
+        time.sleep(20)
         readSerial()
     print(my_data)
 
